@@ -1,0 +1,129 @@
+:root{
+  --window-width: 60vw;
+  --window-height: 500px;
+  --num-of-pictures: 5;
+  --time-of-one-slide: 3s;
+  --slide-total-duration: calc(var(--num-of-pictures) * var(--time-of-one-slide));
+}
+
+.window{
+  width: var(--window-width); /* 윈도우 크기 설정 */ 
+  height: var(--window-height);
+  margin: 5rem auto;
+  overflow: hidden; /* 윈도우를 벗어난 사진 가리기 */
+  position: relative;
+}
+.window .prev:hover, .window .next:hover{
+  transform: rotate(360deg);
+}
+.window .prev, .window .next{
+  width: 3rem;
+  height: 3rem;
+  line-height: 2.5rem;
+  text-align: center;
+  position: absolute;
+  top: 45%;
+  color: #fff;
+  font-size: 3rem;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  z-index: 3;
+  cursor: pointer;
+  transition: .5s;
+  user-select: none;
+}
+.window .prev{
+  content: '<';
+  left: 1rem;
+}
+.window .next{
+  content: '>';
+  right: 1rem;
+}
+.window .film{
+  display: flex; /* 사진 가로정렬 */
+  width: calc(var(--window-width) * var(--num-of-pictures)); /* 윈도우 크기 x 사진갯수 */
+  height: var(--window-height);
+}
+.window .card{
+  position: relative;
+}
+.window .card img{
+  width: var(--window-width); /* 윈도우 크기 설정 */ 
+  height: var(--window-height);
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale();
+  transition: .3s;
+}
+.window .card img:hover{
+  filter: grayscale(0);
+}
+.window .card .text-section{
+  position: absolute;
+  width: 100%;
+  bottom: 0rem;
+  padding-left: 1rem;
+  background: rgba(0, 0, 0, .5); 
+  color: #fff; 
+  z-index: 3;
+}
+.window .card h3{
+  font-size: 1.5rem;
+}
+
+@keyframes slide {
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 900px){
+  .window {
+    width: 70vw;
+  }
+  .window .card img{
+    width: 70vw;
+  }
+}
+@media (max-width: 600px){
+  .window {
+    width: 80vw;
+  }
+  .window .card img{
+    width: 80vw;
+  }
+}
+@media (max-width: 400px){
+  .window {
+    width: 90vw;
+  }
+  .window .card img{
+    width: 90vw;
+  }
+  .window .card h3{
+    font-size: 1.5rem;
+  }
+  .window .card p{
+    bottom: .5rem;
+    font-size: .8rem;
+  }
+  .window .prev, .window .next{
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 2rem;
+  }
+}
+@media (max-width: 270px){
+  .window .card h3{
+    font-size: 1rem;
+  }
+  .window .card p{
+    bottom: .2rem;
+    font-size: .5rem;
+  }
+}
